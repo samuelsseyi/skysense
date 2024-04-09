@@ -17,7 +17,7 @@ searchButton.addEventListener("click", (e)=>{
       document.getElementById("errorDiv").style.display = "none"
     },3000)
 
-  }
+  } 
   checkWeather(searchBox.value);
 
   async function checkWeather(city){
@@ -48,6 +48,37 @@ searchButton.addEventListener("click", (e)=>{
   
   checkWeather()
 })
+
+
+window.onload = function(){
+  navigator.geolocation.getCurrentPosition((endConvertedResponse)=>{
+    let lat = `${endConvertedResponse.coords.latitude}`
+    let lon = `${endConvertedResponse.coords.longitude}`
+    let endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=308b780e1a7653426dc43fe146ea7ebd&units=metric`
+
+    fetch(endpoint).then((convert =>{
+      convert.json().then(showData=>{
+        console.log(showData);
+      document.getElementById("temp").innerHTML = `${showData.main.temp}⁰c`
+    document.getElementById("country").innerHTML = `${showData.name}`
+    document.getElementById("weatherCondition").innerHTML = showData.weather[0].description
+    document.getElementById("icon").innerHTML = `<img src='http://openweathermap.org/img/w/${showData.weather[0].icon}.png' alt='weather img' width="80px"/>`
+    document.getElementById("moreWeatherInfo").innerHTML = `
+    <p class="fs-4 border-bottom text-primary p-3">Country Code: ${showData.sys.country}</p>
+    <p class="fs-4 border-bottom text-primary p-3">Humidity: ${showData.main.humidity}% </p>
+    <p class="fs-4 border-bottom text-primary p-3">Pressure: ${showData.main.pressure}hPa</p>
+    <p class="fs-4 border-bottom text-primary p-3">Wind Speed: ${showData.wind.speed}m/s</p>
+    <p class="fs-4 border-bottom text-primary p-3">Latitude: ${showData.coord.lat} </p>
+    <p class="fs-4 border-bottom text-primary p-3">Longitude: ${showData.coord.lon} </p>
+    <p class="fs-4 border-bottom text-primary p-3">Temperature: ${showData.main.temp}⁰c</p>
+    <p class="fs-4 border-bottom text-primary p-3">Min Temperature: ${showData.main.temp_min}⁰c </p>
+    <p class="fs-4 border-bottom text-primary p-3">Max Temperature: ${showData.main.temp_max}⁰c </p>
+    <p class="fs-4 border-bottom text-primary p-3">Description: ${showData.weather[0].description}</p>
+`
+      })
+    }))
+  })
+}
 
 
 

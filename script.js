@@ -26,21 +26,24 @@ searchButton.addEventListener("click", (e)=>{
   
   
     console.log(data);
-    document.getElementById("country").innerHTML = `${data.name}`
     document.getElementById("temp").innerHTML = `${data.main.temp}⁰c`
+    document.getElementById("country").innerHTML = `${data.name}`
     document.getElementById("weatherCondition").innerHTML = data.weather[0].description
     document.getElementById("icon").innerHTML = `<img src='http://openweathermap.org/img/w/${data.weather[0].icon}.png' alt='weather img' width="80px"/>`
     document.getElementById("moreWeatherInfo").innerHTML = `
-    <p class="fs-4 border-bottom text-dark p-3">Country Code: ${data.sys.country}</p>
-    <p class="fs-4 border-bottom text-dark p-3">Pressure: ${data.main.pressure}hPa</p>
-    <p class="fs-4 border-bottom text-dark p-3">Humidity: ${data.main.humidity}% </p>
-    <p class="fs-4 border-bottom text-dark p-3">Wind Speed: ${data.wind.speed}m/s</p>
-    <p class="fs-4 border-bottom text-dark p-3">Latitude: ${data.coord.lat} </p>
-    <p class="fs-4 border-bottom text-dark p-3">Longitude: ${data.coord.lon} </p>
-    <p class="fs-4 border-bottom text-dark p-3">Min Temperature: ${data.main.temp_min}⁰c </p>
-    <p class="fs-4 border-bottom text-dark p-3">Max Temperature: ${data.main.temp_max}⁰c </p>
+    <p class="fs-4 border-bottom text-primary p-3">Country Code: ${data.sys.country}</p>
+    <p class="fs-4 border-bottom text-primary p-3">Humidity: ${data.main.humidity}% </p>
+    <p class="fs-4 border-bottom text-primary p-3">Pressure: ${data.main.pressure}hPa</p>
+    <p class="fs-4 border-bottom text-primary p-3">Wind Speed: ${data.wind.speed}m/s</p>
+    <p class="fs-4 border-bottom text-primary p-3">Latitude: ${data.coord.lat} </p>
+    <p class="fs-4 border-bottom text-primary p-3">Longitude: ${data.coord.lon} </p>
+    <p class="fs-4 border-bottom text-primary p-3">Temperature: ${data.main.temp}⁰c</p>
+    <p class="fs-4 border-bottom text-primary p-3">Min Temperature: ${data.main.temp_min}⁰c </p>
+    <p class="fs-4 border-bottom text-primary p-3">Max Temperature: ${data.main.temp_max}⁰c </p>
+    <p class="fs-4 border-bottom text-primary p-3">Description: ${data.weather[0].description}</p>
     `
   
+    document.getElementById("searchBox").value = ""
   }
   
   checkWeather()

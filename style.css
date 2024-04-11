@@ -3,7 +3,7 @@ body{
   margin: 0%;
   padding: 0%;
   font-family: "Merriweather", serif;
-  background: radial-gradient(ellipse at bottom, #87CEEB 0%, #5e6bb3 100%);
+  background: radial-gradient(ellipse at bottom, #4DB6AC 0%, #5e6bb3 100%);
   min-height: 100vh;  
 }
 
